@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Appointment Booking</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+   
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1.8px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #3f51b5;
+      outline: none;
+      box-shadow: 0 0 5px rgba(63,81,181,0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background-color: #303f9f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Book Appointment</h1>
+    <form>
+      <label for="patient">Patient:</label>
+      <input type="text" id="patient" name="patient" placeholder="Enter patient name" required />
+
+      <label for="doctor">Doctor:</label>
+      <input type="text" id="doctor" name="doctor" placeholder="Enter doctor name" required />
+
+      <label for="appointment_date">Appointment Date:</label>
+      <input type="date" id="appointment_date" name="appointment_date" required />
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+</body>
+</html>
+
+{% endblock body %}
+    
