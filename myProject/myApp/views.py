@@ -51,8 +51,31 @@ def DoctordeletePage(request,id):
 
 
 def DoctoreditPage(request,id):
-    
-    return None
+    departments=DepartmentModel.objects.all()
+    doctor=DoctorModel.objects.get(id=id)
+    if request.method=="POST":
+        name=request.POST.get("name")
+        specialty=request.POST.get("specialty")
+        Departmet_id=request.POST.get("Departmet_id")
+        phone=request.POST.get("phone")
+        email=request.POST.get("email")
+        departmentName=DepartmentModel.objects.get(id=Departmet_id)
+        
+        data=DoctorModel(
+            id=id,
+            DoctorName=name,
+            Specialization=specialty,
+            phone=phone,
+            email=email,
+            department=departmentName
+        )
+        data.save()
+        return redirect("doctorPage")
+    context={
+        'departments':departments,
+        'doctor':doctor,
+    }
+    return render(request,"DoctoreditPage.html",context)
 
 
 def patientPage(request):
