@@ -100,7 +100,7 @@
 
 <h1>Doctor Management</h1>
 
-  <form method="POST" action="">
+  <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <div>
       <label for="name">Doctor Name</label>
@@ -154,6 +154,19 @@
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" value="{{doctor.email}}" placeholder="doctor@example.com" required />
     </div>
+
+
+    <div>
+      <label for="email">Add Image</label>
+      <input type="file" id="email" name="new_Image" />
+    </div>
+
+     {% if doctor.doctor_image %}
+               
+            <input type="text" id="email" name="old_Image" value="{{doctor.doctor_image.url}}" hidden />
+            <img src="{{doctor.doctor_image.url}}" height="150px" alt="">
+                   
+        {% endif %}
 
     <button type="submit">Edit Doctor</button>
   </form>

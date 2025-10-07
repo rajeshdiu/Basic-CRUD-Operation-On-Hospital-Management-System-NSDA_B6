@@ -206,9 +206,21 @@
             <td>{{ i.phone }}</td>
             <td>{{ i.email }}</td>
             <td>{{ i.department.DepartmentName }}</td>
+
+
             <td>
-              <img src="{{i.doctor_image.url}}" height="50px" alt="">
+
+              
+              {% if i.doctor_image %}
+
+                   <img src="{{i.doctor_image.url}}" height="50px" alt="">
+                   
+              {% endif %}
+
+              
             </td>
+
+
             <td class="actions">
               <a href="{% url 'DoctoreditPage' i.id %}">Edit</a>
               <a href="{% url 'DoctordeletePage' i.id %}">Delete</a>

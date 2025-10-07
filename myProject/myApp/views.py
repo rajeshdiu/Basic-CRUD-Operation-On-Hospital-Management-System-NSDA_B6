@@ -61,6 +61,8 @@ def DoctoreditPage(request,id):
         Departmet_id=request.POST.get("Departmet_id")
         phone=request.POST.get("phone")
         email=request.POST.get("email")
+        new_Image=request.FILES.get("new_Image")
+        old_Image=request.POST.get("old_Image")
         departmentName=DepartmentModel.objects.get(id=Departmet_id)
         
         data=DoctorModel(
@@ -69,8 +71,14 @@ def DoctoreditPage(request,id):
             Specialization=specialty,
             phone=phone,
             email=email,
-            department=departmentName
+            department=departmentName,
         )
+        
+        if new_Image:
+            data.doctor_image=new_Image
+        elif old_Image:
+            data.doctor_image=old_Image
+        
         data.save()
         return redirect("doctorPage")
     context={
