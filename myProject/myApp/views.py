@@ -15,6 +15,7 @@ def doctorPage(request):
         Departmet_id=request.POST.get("Departmet_id")
         phone=request.POST.get("phone")
         email=request.POST.get("email")
+        Doctor_Image=request.FILES.get("Doctor_Image")
         
         departmentName=DepartmentModel.objects.get(id=Departmet_id)
         
@@ -23,7 +24,8 @@ def doctorPage(request):
             Specialization=specialty,
             phone=phone,
             email=email,
-            department=departmentName
+            department=departmentName,
+            doctor_image=Doctor_Image,
         )
         
         data.save()
@@ -115,8 +117,31 @@ def patientPage(request):
 
 def appointmentPage(request):
     
+    patients=PatientModel.objects.all()
+    doctors=DoctorModel.objects.all()
     
-    return render(request,"appointmentPage.html")
+    if request.method=='POST':
+        
+        patient_id=request.POST.get("Patient_id")
+        patient_name=PatientModel.objects.get(id=patient_id)
+        Doctor_id=request.POST.get("Doctor_id")
+        doctor_name=DoctorModel.objects.get(id=Doctor_id)
+        appointment_date=request.POST.get("appointment_date")
+        
+        
+        data=AppointmentModel(
+            patient=patient_name,
+            doctor=doctor_name,
+            appointment_date=appointment_date,
+            )
+        data.save()
+        return redirect("appointmentPage")
+    
+    context={
+        'patients':patients,
+        'doctors':doctors
+    }
+    return render(request,"appointmentPage.html",context)
 
 
 def departmentPage(request):

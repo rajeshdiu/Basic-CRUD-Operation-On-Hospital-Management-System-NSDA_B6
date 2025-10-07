@@ -16,10 +16,10 @@ class DoctorModel(models.Model):
     phone=models.CharField(max_length=100,null=True)
     email=models.EmailField(max_length=100,null=True)
     department=models.ForeignKey(DepartmentModel,max_length=100,null=True,on_delete=models.CASCADE,related_name="my_department")
+    doctor_image=models.ImageField(null=True,upload_to="Media/Doctor_Picture")
     
     def __str__(self):
         return self.DoctorName+"-"+self.department.DepartmentName
-    
     
 class PatientModel(models.Model):
     PatientName=models.CharField(max_length=100,null=True)
